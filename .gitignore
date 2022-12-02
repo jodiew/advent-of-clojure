@@ -3,3 +3,5 @@
 .cpcache/
 .lsp/
 .portal/
+.vscode/
+.nrepl-port
