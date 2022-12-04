@@ -1,6 +1,8 @@
 (ns advent-of-code.day-1 
   (:require [clojure.string :as string]))
 
+;; --- Day 1: Calorie Counting ---
+
 ;; Part 1
 
 (defn parse-input [input]

@@ -1,6 +1,8 @@
 (ns advent-of-code.day-2 
   (:require [clojure.string :as string]))
 
+;; --- Day 2: Rock Paper Scissors ---
+
 ;; Part 1
 (defn parse-input [input]
   (->> input
