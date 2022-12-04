@@ -8,14 +8,11 @@
   (string/split input #"[\n,]"))
 
 (defn ->range [[a b]]
-  (range (Integer/parseInt a)
-         (inc (Integer/parseInt b))))
+  [(Integer/parseInt a) (Integer/parseInt b)])
 
-(defn fully-contains? [[a b]]
-  (or (and (>= (first a) (first b))
-           (<= (last a)  (last b)))
-      (and (>= (first b) (first a))
-           (<= (last b)  (last a)))))
+(defn fully-contains? [[[a b] [x y]]]
+  (or (and (>= a x) (<= b y))
+      (and (>= x a) (<= y b))))
 
 (defn part-1 [input]
   (->> input
@@ -31,3 +28,21 @@
 ;; => 540
 
 ;; Part 2
+
+(defn overlaps? [[[a b] [x y]]]
+  (or (<= x a y)
+      (<= a x b)))
+
+(defn part-2 [input]
+  (->> input
+       parse-input
+       (map (comp
+             ->range
+             #(string/split % #"-")))
+       (partition 2)
+       (filter overlaps?)
+       count
+       ))
+
+(part-2 (slurp "resources/day_4_input.txt"))
+;; => 872

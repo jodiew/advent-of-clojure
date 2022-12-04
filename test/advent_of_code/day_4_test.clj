@@ -15,3 +15,8 @@
       (testing "number of containing pairs"
         (is (= 2
                (part-1 test-input)))))
+
+(deftest part-2-test
+  (testing "number of overlaping pairs"
+    (is (= 4
+           (part-2 test-input)))))
