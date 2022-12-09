@@ -1,6 +1,5 @@
 (ns advent-of-code.day-7 
-  (:require [clojure.string :as string]
-            [clojure.walk :refer [postwalk]]))
+  (:require [clojure.string :as string]))
 
 ;; --- Day 7: No Space Left On Device ---
 
