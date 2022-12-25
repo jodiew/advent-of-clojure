@@ -58,3 +58,8 @@
            (part-1 test-input)))
     )
   )
+
+(deftest part-2-test
+  (testing "Part Two"
+    (is (= 140
+           (part-2 test-input)))))

@@ -1,6 +1,7 @@
 (ns advent-of-code.day-13 
   (:require [clojure.string :as string]
-            [clojure.edn :refer [read-string]]))
+            ;; [clojure.edn :refer [read-string]]
+            ))
 
 ;; --- Day 13: Distress Signal ---
 (def puzzle-input (slurp "resources/day_13_input.txt"))
@@ -56,4 +57,25 @@
 (comment
   (part-1 puzzle-input)
 ;;   => 5340
+  )
+
+;; --- Part Two ---
+
+(defn part-2 [input]
+  (let [parsed  (->> input
+                     string/split-lines
+                     (filter not-empty)
+                     (map read-string))
+        sorted-packets (vec (sort part-1-compare (conj parsed [[2]] [[6]])))]
+    (reduce-kv (fn [acc i v]
+                 (condp = v
+                   [[2]] (* acc (inc i))
+                   [[6]] (* acc (inc i))
+                   acc))
+               1
+               sorted-packets)))
+
+(comment
+  (part-2 puzzle-input)
+;;   => 21276
   )
