@@ -80,3 +80,39 @@
   (part-1 puzzle-input)
 ;;   => 728
   )
+
+;; --- Part Two ---
+
+(defn drop-sand-with-floor [caves [x y] floor-y]
+  (cond
+    (= (inc y) floor-y)                  (assoc caves [x y] :sand)
+    (nil? (get caves [x (inc y)]))       (recur caves [x (inc y)]       floor-y)
+    (nil? (get caves [(dec x) (inc y)])) (recur caves [(dec x) (inc y)] floor-y)
+    (nil? (get caves [(inc x) (inc y)])) (recur caves [(inc x) (inc y)] floor-y)
+    :else                                (assoc caves [x y] :sand)))
+
+(defn fill-sand-with-floor [caves n floor-y]
+  (let [dropped (drop-sand-with-floor caves [500 0] floor-y)
+        ;; _       (do (println "==== Sand: " n " ====")
+        ;;             (print-cave dropped))
+        ]
+    (if (= (get dropped [500 0]) :sand)
+      n
+      (recur dropped (inc n) floor-y))))
+
+(defn part-2 [input]
+  (let [cave-system (zipmap (->> input
+                                 parse-input
+                                 (map build-wall)
+                                 (apply concat))
+                            (repeat :rock))
+        rock-floor (+ 2 (apply max (map second (keys cave-system))))]
+    (-> cave-system
+        (assoc [500 0] :source)
+        (fill-sand-with-floor 1 rock-floor))
+    ))
+
+(comment
+  (part-2 puzzle-input)
+;;   => 27623
+  )

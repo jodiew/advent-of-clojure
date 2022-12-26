@@ -11,3 +11,8 @@
   (testing "Part One"
     (is (= 24
            (part-1 test-input)))))
+
+(deftest part-2-test
+  (testing "Part Two"
+    (is (= 93
+           (part-2 test-input)))))
