@@ -26,4 +26,9 @@
     (is (= 10
            (part-1 test-input-small)))
     (is (= 64
-           (part-1 test-input-large)))))
+           (part-1 test-input-large))))
+  (testing "Part Two"
+    (is (= 10
+           (part-2 test-input-small)))
+    (is (= 58
+           (part-2 test-input-large)))))
